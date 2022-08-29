@@ -2,7 +2,19 @@
     <div class="m-auto">
         <h1>Login Here</h1>
         <form action="">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" placeholder="Enter your email"
+                    required />
+            </mat-form-field>
 
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password"
+                    placeholder="Enter your password" required />
+            </mat-form-field>
+
+            <button type="submit" mat-raised-button>Login</button>
         </form>
     </div>
 </div>

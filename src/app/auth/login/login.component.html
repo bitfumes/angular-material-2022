@@ -1,20 +1,34 @@
 <div class="flex">
     <div class="m-auto">
-        <h1>Login Here</h1>
-        <form action="">
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input matInput type="email" placeholder="Enter your email"
-                    required />
-            </mat-form-field>
+        <mat-card>
+            <mat-card-title>
+                Login Here
+            </mat-card-title>
 
-            <mat-form-field>
-                <mat-label>Password</mat-label>
-                <input matInput type="password"
-                    placeholder="Enter your password" required />
-            </mat-form-field>
+            <mat-card-subtitle>
+                Enter your email and password to login.
+            </mat-card-subtitle>
 
-            <button type="submit" mat-raised-button>Login</button>
-        </form>
+            <mat-card-content>
+                <form action="">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email"
+                            placeholder="Enter your email" required />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password"
+                            placeholder="Enter your password" required />
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button color="accent" type="submit"
+                    mat-raised-button>Login</button>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </div>

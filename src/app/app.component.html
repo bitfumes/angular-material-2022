@@ -1,7 +1,12 @@
 <mat-toolbar color="primary" class="flex justify-content-between">
     Ng Mat
     <a routerLink="blog" href="" mat-stroked-button>Blog</a>
-    <a routerLink="login" href="" mat-stroked-button>Login</a>
+
+    <div>
+        <mat-icon style="margin-right: 10px;" matBadge="15"
+            matBadgeColor="accent">notifications</mat-icon>
+        <a routerLink="login" href="" mat-stroked-button>Login</a>
+    </div>
 </mat-toolbar>
 
 <router-outlet>

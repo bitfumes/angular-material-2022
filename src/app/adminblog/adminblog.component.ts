@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 export interface PeriodicElement {
   id: number;
@@ -8,51 +10,50 @@ export interface PeriodicElement {
   published_at: Date;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    id: 1,
-    title: 'My Best Blog',
-    body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
-    image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    published_at: new Date(),
-  },
-  {
-    id: 2,
-    title: 'My Best Blog',
-    body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
-    image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    published_at: new Date(),
-  },
-  {
-    id: 3,
-    title: 'My Best Blog',
-    body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
-    image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    published_at: new Date(),
-  },
-  {
-    id: 4,
-    title: 'My Best Blog',
-    body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
-    image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    published_at: new Date(),
-  },
-  {
-    id: 5,
-    title: 'My Best Blog',
-    body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
-    image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-    published_at: new Date(),
-  },
-];
-
 @Component({
   selector: 'app-adminblog',
   templateUrl: './adminblog.component.html',
   styleUrls: ['./adminblog.component.css'],
 })
 export class AdminblogComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
+  dataSource: PeriodicElement[] = [
+    {
+      id: 1,
+      title: 'My Best Blog',
+      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
+      image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+      published_at: new Date(),
+    },
+    {
+      id: 2,
+      title: 'My Best Blog',
+      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
+      image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+      published_at: new Date(),
+    },
+    {
+      id: 3,
+      title: 'My Best Blog',
+      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
+      image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+      published_at: new Date(),
+    },
+    {
+      id: 4,
+      title: 'My Best Blog',
+      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
+      image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+      published_at: new Date(),
+    },
+    {
+      id: 5,
+      title: 'My Best Blog',
+      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus unde nam ut doloremque laboriosam optio neque dicta itaque architecto dolorem porro ad, beatae fugit cumque nulla quisquam omnis placeat. Ullam.',
+      image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+      published_at: new Date(),
+    },
+  ];
+
   displayedColumns: string[] = [
     'id',
     'title',
@@ -61,7 +62,17 @@ export class AdminblogComponent implements OnInit {
     'actions',
   ];
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  delete(id: number) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'true') {
+        this.dataSource = this.dataSource.filter((data) => data.id != id);
+      }
+    });
+  }
 }

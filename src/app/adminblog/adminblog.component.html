@@ -1,0 +1,31 @@
+<h1>All Blogs</h1>
+
+<table mat-table [dataSource]="dataSource" style="width: 100%;">
+    <mat-text-column name="id"></mat-text-column>
+    <mat-text-column name="title"></mat-text-column>
+
+    <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef> Thumbnail </th>
+        <td mat-cell *matCellDef="let data">
+            <img [src]="data.image" width="50" height="50" />
+        </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="published_at">
+        <th mat-header-cell *matHeaderCellDef> Published At </th>
+        <td mat-cell *matCellDef="let data"> {{data.published_at}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let data">
+            <button mat-raised-button color="accent">Edit</button>
+            <button mat-raised-button color="warn"
+                style="margin-left: 10px;">Delete</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let rowData; columns: displayedColumns"></tr>
+</table>
